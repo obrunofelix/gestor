@@ -2,34 +2,44 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth_controller extends CI_Controller {
+
+    // Página inicial de login
     public function index() {
         $this->load->view("Login_view");
     }
 
+    // Processa o login
     public function logar() {
-        $dadosFormulario = $this->input->post();
-        $email = $dadosFormulario['email'] ;
-        $senha = $dadosFormulario['senha'] ;
+        // Coleta os dados do formulário
+        $email = $this->input->post('email');
+        $senha = $this->input->post('senha');
 
-        
+        // Busca funcionário pelo e-mail
         $funcionario = $this->db
-                    ->get_where("funcionarios", 
-                        ['email' => $email, 'senha' => $senha]
-                    )
-                    ->row_array();
+                            ->get_where("funcionarios", ['email' => $email])
+                            ->row_array();
 
         if ($funcionario) {
-            // loga ele
-            $this->session->set_userdata($funcionario);
-            header("location:perfil");
+            // Verifica se a senha está correta
+            if ($funcionario['senha'] == $senha) {
+                // Login bem-sucedido: armazena os dados na sessão
+                $this->session->set_userdata($funcionario);
+                redirect('perfil');
+            } else {
+                // Senha incorreta
+                $this->session->set_flashdata('erro', 'Usuário ou senha incorretos.');
+                redirect(base_url());
+            }
         } else {
-            // volta para tela de login
-            header("location: " . base_url());
+            // E-mail não encontrado no banco
+            $this->session->set_flashdata('erro', 'Usuário ou senha incorretos.');
+            redirect(base_url());
         }
     }
 
-    function deslogar() {
+    // Faz logout do sistema
+    public function deslogar() {
         $this->session->sess_destroy();
-        header("location: " . base_url());
+        redirect(base_url());
     }
 }

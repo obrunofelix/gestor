@@ -21,3 +21,6 @@ $route['perfil']['get'] = 'Funcionarios_controller/perfil_funcionario';
 // Auth_controller - >autentificação
 $route['login']['post'] = 'Auth_controller/logar';
 $route['deslogar']['get'] = 'Auth_controller/deslogar';
+
+// Rotas para Funcionario (MODAL)
+$route['get-funcionario']['get'] = 'Funcionarios_controller/get_funcionario';

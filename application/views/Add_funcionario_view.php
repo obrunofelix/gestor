@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +42,7 @@
                 <div class="col-12 col-md-6 mt-3">
                     <label class="form-label" for="tipo">Tipo</label>
                     <select class="form-select" required name="tipo" id="tipo">
-                        <option value="comun">Comun</option>
+                        <option value="comum">Comum</option>
                         <option value="gestor">Gestor</option>
                     </select>
                 </div>
