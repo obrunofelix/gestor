@@ -98,4 +98,10 @@ class Funcionarios_controller extends CI_Controller {
         $funcionario = $this->funcionarios->get_by_id($id);
         echo json_encode($funcionario);
     }
+
+    public function ajax_listar_funcionarios() {
+        $funcionarios = $this->funcionarios->get_all();
+        echo json_encode($funcionarios);
+    }
+    
 }

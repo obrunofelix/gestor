@@ -24,3 +24,5 @@ $route['deslogar']['get'] = 'Auth_controller/deslogar';
 
 // Rotas para Funcionario (MODAL)
 $route['get-funcionario']['get'] = 'Funcionarios_controller/get_funcionario';
+
+$route['ajax-funcionarios']['get'] = 'Funcionarios_controller/ajax_listar_funcionarios';
